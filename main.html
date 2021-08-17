@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <link href="main.css" rel="stylesheet">
+    <script src = "main.js"></script>
+    <title>mainwindow</title>
+</head>
+<body>
+    <div class = "mainframe" >
+        <script>
+            let element = document.currentScript;
+            for(let i =0;i<4;i++){
+                for(let j =0;j<4;j++){
+                    element.insertAdjacentHTML('beforebegin', 
+                    '<div class = "emptyblock" style ="left:calc(var(--blockspace) + (var(--blockspace) + var(--blocksize))*'+i+');top:calc(var(--blockspace) + (var(--blockspace) + var(--blocksize))*'+j+');"></div>'
+                    );
+                }
+            }
+            let controler = new Main(element); 
+            let doing=0;
+            document.addEventListener('keydown', (event) => {
+            var keyName = event.key;
+            if(doing!=1){
+                doing=1;
+                if (keyName=="ArrowUp"){
+                    controler.move_block("UP");
+                }else if(keyName=="ArrowRight"){
+                    controler.move_block("R");
+                }else if(keyName=="ArrowLeft"){
+                    controler.move_block("L");
+                }else if(keyName=="ArrowDown"){
+                    controler.move_block("DOWN");
+                }
+                setTimeout(()=>{
+                    doing=0;
+                },200);
+            }
+        });
+        </script>
+    </div>
+    <div class = "gamemessage" id ="gamemessage_off">
+        <p>GAME OVER</p>
+    </div>
+    <button class = "button" id = "retrybutton_off" onclick="()=>{control = new Main(element)}">
+        RETRY
+    </button>
+    <button class = "button" id = "newgamebutton" onclick="()=>{control = new Main(element)}">
+        NEW GAME
+    </button>
+    <div id = "scoreboard">
+        <p>SCORE</p>
+        <div id ="score"><p>0</p></div>
+    </div>
+    <button onclick="controler.deba()">
+        debug
+    </button>
+</body>
+</html>
