@@ -37,7 +37,7 @@ p{
 .block_2,.block_4,.makingblock_2,.makingblock_4,.changingblock_4{
     color:#776e65;
 }
-.block_8,.block_16,.block_32,.block_64,.block_128,.changingblock_8,.changingblock_16,.changingblock_32,.changingblock_64,.changingblock_128{
+.block_8,.block_16,.block_32,.block_64,.block_128,.changingblock_8,.changingblock_16,.changingblock_32,.changingblock_64,.changingblock_128,.makingblock_8,.makingblock_16.makingblock_32,.makingblock_64,.makingblock_128{
     color:#f9f6f2;
 }
 .emptyblock{
@@ -107,6 +107,7 @@ p{
 #scoreboard > p{
     font-size: calc(var(--blocksize)/5);
 }
+/*************2*****************/
 .makingblock_2{
     height: var(--blocksizemaking);
     width: var(--blocksizemaking);
@@ -123,6 +124,7 @@ p{
     transition: var(--blocktr-time);
     border-radius:  var(--allblock-radius);
 }
+/***************8******************/
 .makingblock_4{
     height: var(--blocksizemaking);
     width: var(--blocksizemaking);
@@ -147,6 +149,15 @@ p{
     transition: var(--blockchtr-time);
     border-radius: var(--allblock-radius);
 }
+/*************8************/
+.makingblock_8{
+    height: var(--blocksizemaking);
+    width: var(--blocksizemaking);
+    background-color: var(--blockcoler-v8);
+    position: absolute;
+    transition: var(--blockmakingtr-time);
+    border-radius: var(--allblock-radius);
+}
 .block_8{
     height: var(--blocksize);
     width: var(--blocksize);
@@ -161,6 +172,15 @@ p{
     background-color: var(--blockcoler-v8);
     position: absolute;
     transition: var(--blockchtr-time);
+    border-radius: var(--allblock-radius);
+}
+/****************16***************/
+.makingblock_16{
+    height: var(--blocksizemaking);
+    width: var(--blocksizemaking);
+    background-color: var(--blockcoler-v16);
+    position: absolute;
+    transition: var(--blockmakingtr-time);
     border-radius: var(--allblock-radius);
 }
 .block_16{
@@ -179,6 +199,15 @@ p{
     transition: var(--blockchtr-time);
     border-radius: var(--allblock-radius);
 }
+/***********32**************/
+.makingblock_32{
+    height: var(--blocksizemaking);
+    width: var(--blocksizemaking);
+    background-color: var(--blockcoler-v32);
+    position: absolute;
+    transition: var(--blockmakingtr-time);
+    border-radius: var(--allblock-radius);
+}
 .block_32{
     height: var(--blocksize);
     width: var(--blocksize);
@@ -195,6 +224,15 @@ p{
     transition: var(--blockchtr-time);
     border-radius: var(--allblock-radius);
 }
+/****************64***********************/
+.makingblock_64{
+    height: var(--blocksizemaking);
+    width: var(--blocksizemaking);
+    background-color: var(--blockcoler-v64);
+    position: absolute;
+    transition: var(--blockmakingtr-time);
+    border-radius: var(--allblock-radius);
+}
 .block_64{
     height: var(--blocksize);
     width: var(--blocksize);
@@ -209,6 +247,15 @@ p{
     background-color: var(--blockcoler-v64);
     position: absolute;
     transition: var(--blockchtr-time);
+    border-radius: var(--allblock-radius);
+}
+/**************128~****************/
+.makingblock_128{
+    height: var(--blocksizemaking);
+    width: var(--blocksizemaking);
+    background-color: var(--blockcoler-v128);
+    position: absolute;
+    transition: var(--blockmakingtr-time);
     border-radius: var(--allblock-radius);
 }
 .block_128{

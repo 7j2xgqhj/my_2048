@@ -2,6 +2,7 @@ class Main{
     constructor(element){
         this.element=element;
         this.score =0;
+        this.inputnumselest=[2];
         this.numbers=new Array(3);
         for(let y = 0; y < 4; y++) {
             this.numbers[y] = new Array(4).fill(0);
@@ -40,7 +41,15 @@ class Main{
                 break;
             }
         }
-        let inputnum = 2;/*要調整*/
+        /*inputnum計算 */
+        let inputnum_arr=[];
+        for(let k= 0;k<this.inputnumselest.length;k++){
+            for(let l = (this.inputnumselest.length-k)**5;l>0;l--){
+                inputnum_arr.push(this.inputnumselest[k]);
+            }
+        };
+        let inputnum = inputnum_arr[Math.round(Math.random()*1000)%inputnum_arr.length];
+        /*************************/
         this.numbers[i][j] = inputnum;
         this.cash[i][j] = inputnum;
         new Promise((resolve)=>{
@@ -211,6 +220,7 @@ class Main{
                 for(let i=0;i<4;i++){
                     if(this.fnumbers[i][j]!=0){
                         console.log(this.numbers[i][j]);
+                        if(this.inputnumselest[this.inputnumselest.length-1]<this.numbers[i][j]) this.inputnumselest.push(this.numbers[i][j]);
                         this.score +=this.numbers[i][j];
                         document.getElementById("score").innerHTML="<p>"+this.score+"</p>";
                         new Promise((resolve)=>{
