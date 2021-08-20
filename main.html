@@ -8,6 +8,10 @@
 </head>
 <body>
     <div class = "mainframe" >
+        <div id = "scoreboard">
+            <p>SCORE</p>
+            <div id ="score"><p>0</p></div>
+        </div>
         <script>
             let element = document.currentScript;
             for(let i =0;i<4;i++){
@@ -42,17 +46,13 @@
     <div class = "gamemessage" id ="gamemessage_off">
         <p>GAME OVER</p>
     </div>
-    <button class = "button" id = "retrybutton_off" onclick="()=>{control = new Main(element)}">
+    <button class = "button" id = "retrybutton_off" onclick="controler.restart();">
         RETRY
     </button>
-    <button class = "button" id = "newgamebutton" onclick="()=>{control = new Main(element)}">
+    <button class = "button" id = "newgamebutton" onclick="controler.restart();">
         NEW GAME
     </button>
-    <div id = "scoreboard">
-        <p>SCORE</p>
-        <div id ="score"><p>0</p></div>
-    </div>
-    <button onclick="controler.deba()">
+    <button onclick="controler.debug()">
         debug
     </button>
 </body>

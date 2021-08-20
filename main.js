@@ -15,7 +15,30 @@ class Main{
         for(let y = 0; y < 4; y++) {
             this.cash[y] = new Array(4).fill(0);
         }
-        this.make_newblock();
+        console.log(typeof(localStorage.getItem('data')));
+        if(typeof(localStorage.getItem('data'))=="string"){
+            console.log("h"+localStorage.getItem('data'));
+            let ary = localStorage.getItem('data').split(',');
+            for(let n=0;n<17;n++) console.log(ary[n]);
+            let k=0;
+            let maxnum =2;
+            for(let i =0;i<4;i++){
+                for(let j =0;j<4;j++,k++){
+                    this.numbers[i][j]=Number(ary[k]);
+                    this.cash[i][j]=Number(ary[k]);
+                    if(this.numbers[i][j]>maxnum) maxnum=this.numbers[i][j];
+                    console.log("num"+k+":"+this.numbers[i][j]);
+                    if(this.numbers[i][j]!=0) this.make_newblock_cash(i,j,this.numbers[i][j]);
+                }
+            }
+            this.score = Number(ary[k]);
+            document.getElementById("score").innerHTML="<p>"+this.score+"</p>";
+            this.inputnumselest =[];
+            for(;maxnum>=2;maxnum/=2) this.inputnumselest.unshift(maxnum);
+        }else{
+            this.make_newblock();
+        }
+        this.stragemake();
     }
     make_newblock(){
         let i,j;
@@ -74,7 +97,36 @@ class Main{
             },10)
         });
     }
+    make_newblock_cash(x,y,num){
+        let i =x;
+        let j =y;
+        let inputnum = num;
+        this.numbers[i][j] = inputnum;
+        this.cash[i][j] = inputnum;
+        new Promise((resolve)=>{
+            if(inputnum>128){
+                this.element.insertAdjacentHTML('afterend', 
+                    '<div class = "makingblock_128" id="x'+i+'y'+j+'_m"><p>'+inputnum+'</p></div>'
+                );
+            }else{
+                this.element.insertAdjacentHTML('afterend', 
+                    '<div class = "makingblock_'+inputnum+'" id="x'+i+'y'+j+'_m"><p>'+inputnum+'</p></div>'
+                );
+            }
+            resolve();
+        }).then(()=>{
+            setTimeout(()=>{
+                document.getElementById("x"+i+"y"+j+"_m").id="x"+i+"y"+j;
+                if(inputnum>128){
+                    document.getElementById("x"+i+"y"+j).className="block_128";
+                }else{
+                    document.getElementById("x"+i+"y"+j).className="block_"+inputnum;
+                }
+            },10)
+        });
+    }
     move_block(direction){
+        localStorage.removeItem("data");
         if(direction=="UP"){
             for(let x =0;x<4;x++){
                 for(let y = 0;y<4;y++){
@@ -285,8 +337,58 @@ class Main{
         }else{
             this.make_newblock();
         }
+        this.stragemake();
     }
-    deba(){
+    stragemake(){
+        localStorage.removeItem("data");
+        let stragestr = "";
+        for(let i =0;i<4;i++){
+            for(let j =0;j<4;j++){
+                stragestr=stragestr.concat(""+this.numbers[i][j]+",");
+            }
+        }
+        stragestr=stragestr.concat(""+this.score);
+        localStorage.setItem("data",stragestr);
+        console.log("str:"+stragestr);
+        console.log("strage:"+localStorage.getItem('data'));
+    }
+    restart(){
+        console.log("restart");
+        localStorage.removeItem('data');
+        for(let i =0;i<4;i++){
+            for(let j=0;j<4;j++){
+                if(document.getElementById("x"+i+"y"+j)!=null){
+                    document.getElementById("x"+i+"y"+j).remove();
+                }
+            }
+        }
+        if(document.getElementById("gamemessage_on")!=null){
+            document.getElementById("gamemessage_on").id="gamemessage_off";
+            document.getElementById("retrybutton_on").id="retrybutton_off";
+        }
+        this.score =0;
+        document.getElementById("score").innerHTML="<p>"+this.score+"</p>";
+        this.inputnumselest=[2];
+        this.numbers=new Array(3);
+        for(let y = 0; y < 4; y++) {
+            this.numbers[y] = new Array(4).fill(0);
+        }
+        this.fnumbers=new Array(3);
+        for(let y = 0; y < 4; y++) {
+            this.fnumbers[y] = new Array(4).fill(0);
+        }
+        this.cash=new Array(3);
+        for(let y = 0; y < 4; y++) {
+            this.cash[y] = new Array(4).fill(0);
+        }
+        this.make_newblock();
+    }
+    debug(){
+        console.log("inputselect:"+this.inputnumselest);
+        console.log("numbers:"+this.numbers);
+        console.log("fnumbers:"+this.fnumbers);
+        console.log("cash:"+this.cash);
+        console.log("score:"+this.score);
         for(let j =0;j<4;j++){
             for(let i=0;i<4;i++){
                 console.log("num:"+this.numbers[i][j]+" ");
