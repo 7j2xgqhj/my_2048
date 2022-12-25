@@ -13,6 +13,7 @@
             <div id ="score"><p>0</p></div>
         </div>
         <script>
+            //ブロックの配置(html書き換えによってscript直前に挿入)
             let element = document.currentScript;
             for(let i =0;i<4;i++){
                 for(let j =0;j<4;j++){
@@ -22,22 +23,30 @@
                 }
             }
             let controler = new Main(element); 
-            let doing=0;
+            let isMoving=false;//ブロックを動かしているか否か
+            //キーの押下を検知
             document.addEventListener('keydown', (event) => {
             var keyName = event.key;
-            if(doing!=1){
-                doing=1;
-                if (keyName=="ArrowUp"){
+            //キーの種別に動作
+            //動作中に重ねて動作を起こさないようにする
+            if(isMoving!=true){
+                isMoving=true;
+                switch(keyName){
+                    case "ArrowUp":
                     controler.move_block("UP");
-                }else if(keyName=="ArrowRight"){
+                    break;
+                    case "ArrowRight":
                     controler.move_block("R");
-                }else if(keyName=="ArrowLeft"){
+                    break;
+                    case "ArrowLeft":
                     controler.move_block("L");
-                }else if(keyName=="ArrowDown"){
+                    break;
+                    case "ArrowDown":
                     controler.move_block("DOWN");
+                    break;
                 }
                 setTimeout(()=>{
-                    doing=0;
+                    isMoving=false;
                 },200);
             }
         });

@@ -2,20 +2,17 @@ class Main{
     constructor(element){
         this.element=element;
         this.score =0;
-        this.inputnumselest=[2];
+        this.blockNumberList=[2];
         this.numbers=new Array(3);
-        for(let y = 0; y < 4; y++) {
-            this.numbers[y] = new Array(4).fill(0);
-        }
         this.fnumbers=new Array(3);
-        for(let y = 0; y < 4; y++) {
-            this.fnumbers[y] = new Array(4).fill(0);
-        }
         this.cash=new Array(3);
         for(let y = 0; y < 4; y++) {
+            this.numbers[y] = new Array(4).fill(0);
+            this.fnumbers[y] = new Array(4).fill(0);
             this.cash[y] = new Array(4).fill(0);
         }
         console.log(typeof(localStorage.getItem('data')));
+        //プレイ済みデータの有無 あったらそれを配置 なければランダム配置
         if(typeof(localStorage.getItem('data'))=="string"){
             console.log("h"+localStorage.getItem('data'));
             let ary = localStorage.getItem('data').split(',');
@@ -33,8 +30,8 @@ class Main{
             }
             this.score = Number(ary[k]);
             document.getElementById("score").innerHTML="<p>"+this.score+"</p>";
-            this.inputnumselest =[];
-            for(;maxnum>=2;maxnum/=2) this.inputnumselest.unshift(maxnum);
+            this.blockNumberList =[];
+            for(;maxnum>=2;maxnum/=2) this.blockNumberList.unshift(maxnum);
         }else{
             this.make_newblock();
         }
@@ -66,9 +63,9 @@ class Main{
         }
         /*inputnum計算 */
         let inputnum_arr=[];
-        for(let k= 0;k<this.inputnumselest.length;k++){
-            for(let l = (this.inputnumselest.length-k)**5;l>0;l--){
-                inputnum_arr.push(this.inputnumselest[k]);
+        for(let k= 0;k<this.blockNumberList.length;k++){
+            for(let l = (this.blockNumberList.length-k)**5;l>0;l--){
+                inputnum_arr.push(this.blockNumberList[k]);
             }
         };
         let inputnum = inputnum_arr[Math.round(Math.random()*1000)%inputnum_arr.length];
@@ -272,7 +269,7 @@ class Main{
                 for(let i=0;i<4;i++){
                     if(this.fnumbers[i][j]!=0){
                         console.log(this.numbers[i][j]);
-                        if(this.inputnumselest[this.inputnumselest.length-1]<this.numbers[i][j]) this.inputnumselest.push(this.numbers[i][j]);
+                        if(this.blockNumberList[this.blockNumberList.length-1]<this.numbers[i][j]) this.blockNumberList.push(this.numbers[i][j]);
                         this.score +=this.numbers[i][j];
                         document.getElementById("score").innerHTML="<p>"+this.score+"</p>";
                         new Promise((resolve)=>{
@@ -368,7 +365,7 @@ class Main{
         }
         this.score =0;
         document.getElementById("score").innerHTML="<p>"+this.score+"</p>";
-        this.inputnumselest=[2];
+        this.blockNumberList=[2];
         this.numbers=new Array(3);
         for(let y = 0; y < 4; y++) {
             this.numbers[y] = new Array(4).fill(0);
@@ -384,7 +381,7 @@ class Main{
         this.make_newblock();
     }
     debug(){
-        console.log("inputselect:"+this.inputnumselest);
+        console.log("inputselect:"+this.blockNumberList);
         console.log("numbers:"+this.numbers);
         console.log("fnumbers:"+this.fnumbers);
         console.log("cash:"+this.cash);
