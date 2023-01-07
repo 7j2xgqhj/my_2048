@@ -33,16 +33,16 @@
                 isMoving=true;
                 switch(keyName){
                     case "ArrowUp":
-                    controler.move_block("UP");
+                    controler.moveBlock("UP");
                     break;
                     case "ArrowRight":
-                    controler.move_block("R");
+                    controler.moveBlock("R");
                     break;
                     case "ArrowLeft":
-                    controler.move_block("L");
+                    controler.moveBlock("L");
                     break;
                     case "ArrowDown":
-                    controler.move_block("DOWN");
+                    controler.moveBlock("DOWN");
                     break;
                 }
                 setTimeout(()=>{
@@ -60,9 +60,6 @@
     </button>
     <button class = "button" id = "newgamebutton" onclick="controler.restart();">
         NEW GAME
-    </button>
-    <button onclick="controler.debug()">
-        debug
     </button>
 </body>
 </html>

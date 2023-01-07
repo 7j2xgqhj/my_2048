@@ -56,7 +56,6 @@ p{
     right: calc((100vw - (var(--blockspace) * 5 + var(--blocksize) * 4))/2);
     top:calc((100vw - (var(--blockspace) * 5 + var(--blocksize) * 4))/5);
     border-radius: 5%;
-    transition: 1s;
 }
 .gamemessage > p{
     position: absolute;
@@ -78,7 +77,6 @@ p{
     font-weight: 700;
     font-size: calc(var(--blocksize)/5);
     border-radius: 10%;
-    transition: 1s;
 }
 #newgamebutton{
     position: absolute;
