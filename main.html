@@ -13,7 +13,6 @@
             <div id ="score"><p>0</p></div>
         </div>
         <script>
-            //ブロックの配置(html書き換えによってscript直前に挿入)
             let element = document.currentScript;
             for(let i =0;i<4;i++){
                 for(let j =0;j<4;j++){
@@ -23,12 +22,9 @@
                 }
             }
             let controler = new Main(element); 
-            let isMoving=false;//ブロックを動かしているか否か
-            //キーの押下を検知
+            let isMoving=false;
             document.addEventListener('keydown', (event) => {
             var keyName = event.key;
-            //キーの種別に動作
-            //動作中に重ねて動作を起こさないようにする
             if(isMoving!=true){
                 isMoving=true;
                 switch(keyName){

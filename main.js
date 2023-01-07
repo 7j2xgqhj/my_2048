@@ -2,7 +2,6 @@ class Main{
     constructor(element){
         this.Element=element;
         this.stateInit();
-        //プレイ済みデータの有無 あったらそれを配置 なければランダム配置
         if(typeof(localStorage.getItem('data'))=="string"){
             this.loadData();
         }else{
@@ -155,7 +154,7 @@ class Main{
                     for(i = y-1;i>-1;i--){
                         if(this.BlocksNumber[x][i]!=0)break;
                     };
-                    if(i!=-1&&this.BlocksNumber[x][y]==this.BlocksNumber[x][i]&&this.isCombinedBlocks[x][i]!=1){/*加算移動,移動先:i*/
+                    if(i!=-1&&this.BlocksNumber[x][y]==this.BlocksNumber[x][i]&&this.isCombinedBlocks[x][i]!=1){
                         this.BlocksNumber[x][i]+=this.BlocksNumber[x][y];
                         this.BlocksNumber[x][y]=0;
                         this.isCombinedBlocks[x][i]=1;
@@ -163,7 +162,7 @@ class Main{
                         let indexbefor=this.spinArrayIndexCW(x,y,degree);
                         let indexafter=this.spinArrayIndexCW(x,i,degree);
                         this.combiningBlockMotion(indexbefor[0],indexbefor[1],indexafter[0],indexafter[1]);
-                    }else{/*通常移動,移動先:(i+1)*/ 
+                    }else{
                         if(y!=(i+1)){
                             this.BlocksNumber[x][i+1]=this.BlocksNumber[x][y];
                             this.BlocksNumber[x][y]=0;

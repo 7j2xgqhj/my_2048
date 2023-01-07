@@ -273,7 +273,7 @@ p{
     border-radius: var(--allblock-radius);
 }
 
-/*以下、座標変更用ID*/
+/*座標変更用ID*/
 #x0y0{
     left: calc(var(--blockspace) + (var(--blockspace) + var(--blocksize))*0);
     top:  calc(var(--blockspace) + (var(--blockspace) + var(--blocksize))*0);
@@ -338,7 +338,6 @@ p{
     left: calc(var(--blockspace) + (var(--blockspace) + var(--blocksize))*3);
     top:  calc(var(--blockspace) + (var(--blockspace) + var(--blocksize))*3);
 }
-/*重複用*/
 #x0y0_{
     left: calc(var(--blockspace) + (var(--blockspace) + var(--blocksize))*0);
     top:  calc(var(--blockspace) + (var(--blockspace) + var(--blocksize))*0);
@@ -403,7 +402,6 @@ p{
     left: calc(var(--blockspace) + (var(--blockspace) + var(--blocksize))*3);
     top:  calc(var(--blockspace) + (var(--blockspace) + var(--blocksize))*3);
 }
-/*演出用*/
 #x0y0_e{
     left: calc(var(--blockspace) + (var(--blockspace) + var(--blocksize))*0 - (var(--blocksizech) - var(--blocksize))/2);
     top:  calc(var(--blockspace) + (var(--blockspace) + var(--blocksize))*0 - (var(--blocksizech) - var(--blocksize))/2);
